@@ -11,6 +11,12 @@ def test_env():
 
 
 def test_get_topic():
+    topic = get_topic('sample_topic')
+    assert topic.name == 'sample'
+    assert type(topic.url) == str
+
+
+def test_get_topic_fail():
     with raises(KeyError) as error_info:
         get_topic('error_topic')
 
