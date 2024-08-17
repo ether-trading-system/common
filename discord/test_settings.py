@@ -1,6 +1,7 @@
 import os
 
-from discord.settings import settings
+from _pytest.python_api import raises
+from discord.settings import get_topic
 
 
 def test_env():
@@ -9,8 +10,8 @@ def test_env():
     assert env == "test"
 
 
-def test_env_value():
-    service_name = "APPLE"
-    common = "COMMON"
-    assert settings.service_name == service_name
-    assert settings.common == common
+def test_get_topic():
+    with raises(KeyError) as error_info:
+        get_topic('error_topic')
+
+    assert error_info.value.args[0] == "Discord topic error_topic is not defined in the settings"
