@@ -1,6 +1,9 @@
+import asyncio
 import logging
+from functools import lru_cache
+from types import TracebackType
 
-from typing import Optional, Dict, List, Any
+from typing import Optional, Dict, List, Any, Type
 from aiohttp import ClientSession, TCPConnector, ClientTimeout
 from dataclasses import dataclass, asdict
 
@@ -32,13 +35,25 @@ class DiscordRest:
     def __init__(self):
         self._client = ClientSession(
             headers={"Content-Type": "application/json"},
-            connector=TCPConnector(ssl=False),
+            connector=TCPConnector(ssl=False, limit=30),
             timeout=ClientTimeout(3),
+            loop=asyncio.get_event_loop(),
         )
+
+    async def __aenter__(self) -> "DiscordRest":
+        return self
+
+    async def __aexit__(
+            self,
+            exc_type: Optional[Type[BaseException]],
+            exc_val: Optional[BaseException],
+            exc_tb: Optional[TracebackType],
+    ) -> None:
+        # await self._client.close()
+        pass
 
     async def execute(self, url: str, embed: DiscordEmbed) -> None:
         json = {
-            "content": "Hello World",
             "embeds": [asdict(embed)],
         }
 
@@ -46,3 +61,8 @@ class DiscordRest:
             if response.status != 204:
                 logger.error(f"Failed to execute webhook: {response.status}")
                 raise Exception(f"Failed to execute webhook: {response.status}")
+
+
+@lru_cache
+def get_discord_rest():
+    return DiscordRest()

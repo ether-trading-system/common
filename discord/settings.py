@@ -8,8 +8,8 @@ env = os.environ.get("ENV", "")
 
 
 class DiscordTopic(BaseModel):
-    name: str
-    url: str
+    name: str = Field(default='Unknown')
+    url: str = Field(default='Unknown')
 
 
 class Settings(BaseSettings):
