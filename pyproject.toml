@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "common"
+version = "0.0.1"
+description = "A common library for the project."
+authors = ["dalcon <dalcon10280@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10 <3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
