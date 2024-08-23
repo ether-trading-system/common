@@ -1,6 +1,6 @@
 import pytest
 
-from discord.discord_rest import DiscordRest, DiscordEmbed
+from common.discord.discord_rest import DiscordRest, DiscordEmbed
 
 
 @pytest.mark.asyncio

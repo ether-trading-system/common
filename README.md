@@ -37,7 +37,7 @@ COMMON_DISCORD='{ "sample_topic": { "name": "sample", "url": "https://discord.co
 ### Usage
 
 ```python
-from discord import notify, notify_info, DiscordMessage, MessageColor
+from common.discord import notify, notify_info, DiscordMessage, MessageColor
 
 message = DiscordMessage(
     topic='sample_topic',
@@ -45,7 +45,6 @@ message = DiscordMessage(
     message='message',
     data={'key': 'value'}
 )
-
 
 await notify(message, MessageColor.INFO)
 await notify_info(message)

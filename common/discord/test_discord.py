@@ -2,7 +2,7 @@ import asyncio
 
 import pytest
 
-from discord import notify, DiscordMessage, notify_danger, notify_success, notify_info, notify_warning, MessageColor
+from common.discord import notify, DiscordMessage, notify_danger, notify_success, notify_info, notify_warning, MessageColor
 
 
 @pytest.mark.asyncio

@@ -1,7 +1,7 @@
 import os
 
 from _pytest.python_api import raises
-from discord.settings import get_topic
+from common.discord.settings import get_topic
 
 
 def test_env():

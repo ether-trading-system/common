@@ -1,11 +1,10 @@
 import json
-from http import HTTPStatus
 
 from typing import Dict, Any, Optional
 from dataclasses import dataclass
-from discord.discord_rest import DiscordEmbed, get_discord_rest
-from discord.message_color import MessageColor
-from discord.settings import get_topic
+from common.discord.discord_rest import DiscordEmbed, get_discord_rest
+from common.discord.message_color import MessageColor
+from common.discord.settings import get_topic
 from fastapi import HTTPException
 
 
