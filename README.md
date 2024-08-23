@@ -4,9 +4,32 @@
 
 ## Install
 
+### poetry
 ```bash
-pip install git+
+poetry add git+https://github.com/auto-trading-system1/common.git 
 ```
+
+아래와 같이 dependencies에 추가되면 정상 설치 입니다.
+```
+# pyproject.toml
+[tool.poetry.dependencies]
+...
+common = {git = "https://github.com/auto-trading-system1/common.git"}
+```
+
+
+### pip
+```bash
+pip install git+https://github.com/auto-trading-system1/common.git
+```
+
+## Update
+
+### poetry
+```bash
+poetry update common 
+```
+
 
 ## Discord
 디스코드 알림을 위한 모듈입니다.
