@@ -1,10 +1,13 @@
 import json
+from http import HTTPStatus
 
 from typing import Dict, Any, Optional
 from dataclasses import dataclass
 from discord.discord_rest import DiscordEmbed, get_discord_rest
 from discord.message_color import MessageColor
 from discord.settings import get_topic
+from fastapi import HTTPException
+
 
 
 @dataclass
@@ -43,3 +46,8 @@ async def notify_info(message: DiscordMessage) -> None:
 
 async def notify_success(message: DiscordMessage) -> None:
     await notify(message, MessageColor.SUCCESS)
+
+
+async def notify_error(exception: HTTPException, data: Optional[Dict[str, Any]]) -> None:
+    message = DiscordMessage(topic="error", title=f"[{exception.name}] {exception.detail}", message="", data=data)
+    await notify_danger(message)

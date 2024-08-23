@@ -6,9 +6,10 @@ authors = ["dalcon <dalcon10280@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.10 <3.11"
+python = "^3.10"
 aiohttp = "^3.10.3"
 pydantic-settings = "^2.4.0"
+fastapi = "^0.112.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest-env = "^1.1.3"
