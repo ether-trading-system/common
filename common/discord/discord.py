@@ -4,7 +4,7 @@ import logging
 
 from typing import Dict, Any, Optional, List
 from common.discord.message_color import MessageColor
-from common.discord.settings import get_topic
+from common.settings import get_topic
 from fastapi import HTTPException
 from aiohttp import ClientSession, TCPConnector, ClientTimeout
 from dataclasses import dataclass, asdict
