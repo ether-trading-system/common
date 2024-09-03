@@ -59,6 +59,8 @@ COMMON_DISCORD='{ "sample_topic": { "name": "sample", "url": "https://discord.co
 
 ### Usage
 
+`__test__ > discord.py` 파일을 참고해주세요.
+
 ```python
 from common.discord import notify, notify_info, DiscordMessage, MessageColor
 
