@@ -14,8 +14,8 @@ class EtherException(Exception):
     data: Optional[Dict[str, Any]]
     error: Optional[BaseException]
 
-    def __init__(self, error: BaseException, error_code: str, status_code: HTTPStatus, message: str, detail: str,
-                 data: Optional[Dict[str, Any]] = None):
+    def __init__(self, error_code: str, status_code: HTTPStatus, message: str, detail: str,
+                 data: Optional[Dict[str, Any]] = None, error: Optional[BaseException] = None):
         self.error_code = error_code
         self.message = message or error_code
         self.status_code = status_code
