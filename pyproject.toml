@@ -4,6 +4,9 @@ version = "0.0.1"
 description = "A common library for the project."
 authors = ["dalcon <dalcon10280@gmail.com>"]
 readme = "README.md"
+packages = [
+    { include = "common" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
