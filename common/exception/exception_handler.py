@@ -1,4 +1,3 @@
-from enum import Enum
 from http import HTTPStatus
 from typing import Any, Optional
 from fastapi import FastAPI, Request
@@ -12,7 +11,7 @@ from .error_code import EtherErrorCode
 
 @dataclass
 class EtherErrorResponse:
-    error_code: Enum
+    error_code: str
     message: str
     detail: str
     data: Optional[Any] = None
@@ -25,7 +24,7 @@ def register_exception_handler(app: FastAPI) -> None:
         return JSONResponse(
             status_code=HTTPStatus.INTERNAL_SERVER_ERROR,
             content=EtherErrorResponse(
-                error_code=EtherErrorCode.UNKNOWN_ERROR,
+                error_code=EtherErrorCode.UNKNOWN_ERROR.value,
                 message=str(exception),
                 detail=str(exception),
             ).__dict__
@@ -38,7 +37,7 @@ def register_exception_handler(app: FastAPI) -> None:
         return JSONResponse(
             status_code=HTTPStatus.BAD_REQUEST,
             content=EtherErrorResponse(
-                error_code=EtherErrorCode.INVALID_REQUEST,
+                error_code=EtherErrorCode.INVALID_REQUEST.value,
                 message=errors[0].get('msg'),
                 detail=errors[0].get('msg'),
                 data=exception.errors()
@@ -50,7 +49,7 @@ def register_exception_handler(app: FastAPI) -> None:
         return JSONResponse(
             status_code=exception.status_code,
             content=EtherErrorResponse(
-                error_code=exception.error_code,
+                error_code=exception.error_code.value,
                 message=exception.message,
                 detail=exception.detail,
                 data=exception.data
