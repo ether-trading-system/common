@@ -1,3 +1,4 @@
+from enum import Enum
 from http import HTTPStatus
 from typing import Any, Optional
 from fastapi import FastAPI, Request
@@ -6,12 +7,12 @@ from dataclasses import dataclass
 from pydantic import ValidationError
 from pydantic_core import ErrorDetails
 from .exception import EtherException
-from .error_code import ErrorCode
+from .error_code import EtherErrorCode
 
 
 @dataclass
 class EtherErrorResponse:
-    error_code: ErrorCode
+    error_code: Enum
     message: str
     detail: str
     data: Optional[Any] = None
@@ -24,7 +25,7 @@ def register_exception_handler(app: FastAPI) -> None:
         return JSONResponse(
             status_code=HTTPStatus.INTERNAL_SERVER_ERROR,
             content=EtherErrorResponse(
-                error_code=ErrorCode.UNKNOWN_ERROR,
+                error_code=EtherErrorCode.UNKNOWN_ERROR,
                 message=str(exception),
                 detail=str(exception),
             ).__dict__
@@ -37,7 +38,7 @@ def register_exception_handler(app: FastAPI) -> None:
         return JSONResponse(
             status_code=HTTPStatus.BAD_REQUEST,
             content=EtherErrorResponse(
-                error_code=ErrorCode.INVALID_REQUEST,
+                error_code=EtherErrorCode.INVALID_REQUEST,
                 message=errors[0].get('msg'),
                 detail=errors[0].get('msg'),
                 data=exception.errors()

@@ -1,22 +1,21 @@
+from enum import Enum
 from typing import Dict, Any, Optional
 from aiohttp import ClientResponse
 from http import HTTPStatus
-
-from .error_code import ErrorCode
 
 
 # https://fastapi.tiangolo.com/tutorial/handling-errors/#handling-errors
 # https://docs.python.org/3/library/http.html#http.HTTPStatus
 
 class EtherException(Exception):
-    error_code: ErrorCode
+    error_code: Enum
     status_code: HTTPStatus
     message: str
     detail: Optional[str]
     data: Optional[Dict[str, Any]]
     error: Optional[BaseException]
 
-    def __init__(self, error_code: ErrorCode, status_code: HTTPStatus, message: str, detail: str,
+    def __init__(self, error_code: Enum, status_code: HTTPStatus, message: str, detail: str,
                  data: Optional[Dict[str, Any]] = None, error: Optional[BaseException] = None):
         self.error_code = error_code
         self.message = message or error_code
