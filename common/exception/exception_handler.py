@@ -1,11 +1,11 @@
 from http import HTTPStatus
 from typing import Any, Optional
-from common import EtherException
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from dataclasses import dataclass
 from pydantic import ValidationError
 from pydantic_core import ErrorDetails
+from .exception import EtherException
 from .error_code import ErrorCode
 
 
