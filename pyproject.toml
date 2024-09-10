@@ -13,6 +13,8 @@ python = "^3.10"
 aiohttp = "^3.10.3"
 pydantic-settings = "^2.4.0"
 fastapi = "^0.112.1"
+sqlalchemy = "^2.0.34"
+psycopg2 = "^2.9.9"
 
 [tool.poetry.group.dev.dependencies]
 pytest-env = "^1.1.3"
