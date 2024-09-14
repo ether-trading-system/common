@@ -1,9 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base
+from common.settings import get_db_config
 
+
+dbhelper = get_db_config()
 # PostgreSQL URL 설정
-DATABASE_URL = f"postgresql://postgres:1q2w3e4r!!@localhost:5432/nebula"
-# DATABASE_URL = f"postgresql://{db_config.user}:{db_config.pw}@{db_config.host}:{db_config.port}/{db_config.name}"
+DATABASE_URL = f"postgresql://{dbhelper.user}:{dbhelper.pw}@{dbhelper.host}:{dbhelper.port}/{dbhelper.name}"
+
 # SQLAlchemy 엔진 생성
 engine = create_engine(DATABASE_URL)
 

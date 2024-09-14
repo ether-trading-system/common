@@ -64,7 +64,7 @@ async def notify(message: DiscordMessage, color: MessageColor) -> None:
         color=color.value,
         fields=[*map(lambda x: {"name": x,
                                 "value": f"```json\n{json.dumps(message.data[x], indent=4, ensure_ascii=False)}\n```"},
-                     message.data)]
+                    message.data)]
     )
     await execute(topic.url, embed)
 

@@ -3,7 +3,7 @@ from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 from common.utils.postgresql_helper import get_db
 
-from sqlalchemy import Column, Integer, String, text
+from sqlalchemy import Column, Integer, String
 from common.utils.postgresql_helper import Base
 from pydantic import BaseModel
 
