@@ -17,9 +17,9 @@ class Settings(BaseSettings):
     discord: Dict[str, DiscordTopic] = Field(default_factory=dict)
 
     model_config = SettingsConfigDict(
-        env_prefix='DB_',
+        env_prefix='COMMON_',
         env_file_encoding='utf-8',
-        env_file=('.env', f'.env.{env}'),
+        env_file=(f'.env.{env}'),
         extra='ignore'
     )
 
