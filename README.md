@@ -74,3 +74,28 @@ message = DiscordMessage(
 await notify(message, MessageColor.INFO)
 await notify_info(message)
 ```
+
+
+---
+### [2024.09.19]
+### SQLAlchemy를 이용한 PostgreSQL 접속(Created by 김대휘)
+[`__test__ > postgresql.py`](__test__/postgresql.py), <br>
+[`common > utils > postgresql_helper.py`](common/utils/postgresql_helper.py) 파일을 참고해주세요.
+
+
+```python
+# __test__/postgresql.py
+class User(Base):
+    __tablename__ = 't_user'
+    __table_args__ = {'schema': 'public'}
+
+    user_id = Column(Integer, primary_key=True, index=True)
+    user_name = Column(String, index=True)
+
+class UserSchema(BaseModel):
+    user_id: int
+    user_name: str
+```
+
+1. DB 테이블 명세를 정의합니다.(default schema는 public입니다.)
+2. `get_db()`를 사용하여 의존성을 주입합니다.
