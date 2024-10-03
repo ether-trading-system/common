@@ -3,7 +3,6 @@ import os
 from typing import Dict
 from pydantic import Field, BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from dotenv import load_dotenv
 
 env = os.environ.get("ENV", "")
 
@@ -35,7 +34,7 @@ class DBSettings(BaseSettings):
     model_config = SettingsConfigDict(
         env_prefix='DB_',
         env_file_encoding='utf-8',
-        env_file=(f'.env.{env}'),
+        env_file=(f'.env'),
         extra='ignore'
     )
 
