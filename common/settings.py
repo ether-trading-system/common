@@ -4,6 +4,9 @@ from typing import Dict
 from pydantic import Field, BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+dotenv_path = find_dotenv()
+load_dotenv(dotenv_path=dotenv_path)
+
 env = os.environ.get("ENV", "")
 
 
