@@ -1,6 +1,7 @@
 import os
-
 from typing import Dict
+
+from dotenv import load_dotenv, find_dotenv
 from pydantic import Field, BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -51,7 +52,7 @@ def get_topic(name: str) -> DiscordTopic:
         return settings.discord[name]
     except KeyError:
         raise KeyError(f'Discord topic {name} is not defined in the settings')
-    
+
 
 def get_db_config() -> DBSettings:
     try:
