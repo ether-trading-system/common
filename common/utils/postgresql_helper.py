@@ -1,4 +1,3 @@
-import databases
 from common.settings import get_db_config
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import declarative_base
