@@ -19,7 +19,7 @@ setup(
     name='quant-common',
     version=read_version(),
     packages=find_packages(exclude=["tests", "tests.*", "examples", "examples.*"]),
-    author='dalcon10028',
-    author_email='dalcon10280@gmail.com',
+    author='kimdaewhi',
+    author_email='kimdaewhi@naver.com',
     install_requires=read_requirements(),
 )
