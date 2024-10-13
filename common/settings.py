@@ -1,8 +1,12 @@
 import os
-
 from typing import Dict
+
+from dotenv import load_dotenv, find_dotenv
 from pydantic import Field, BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+dotenv_path = find_dotenv()
+load_dotenv(dotenv_path=dotenv_path)
 
 env = os.environ.get("ENV", "")
 
@@ -18,12 +22,29 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_prefix='COMMON_',
         env_file_encoding='utf-8',
-        env_file=('.env', f'.env.{env}'),
+        env_file=(f'.env.{env}'),
+        extra='ignore'
+    )
+
+
+# DB Connection을 위한 신규 Settings 추가
+class DBSettings(BaseSettings):
+    host: str = Field(default='None')
+    port: int = Field(default=-99)
+    name: str = Field(default='None')
+    user: str = Field(default='None')
+    pw: str = Field(default='None')
+
+    model_config = SettingsConfigDict(
+        env_prefix='DB_',
+        env_file_encoding='utf-8',
+        env_file=(f'.env'),
         extra='ignore'
     )
 
 
 settings = Settings(_env_file_encoding='utf-8')
+db_settings = DBSettings(_env_file_encoding='utf-8')
 
 
 def get_topic(name: str) -> DiscordTopic:
@@ -31,3 +52,10 @@ def get_topic(name: str) -> DiscordTopic:
         return settings.discord[name]
     except KeyError:
         raise KeyError(f'Discord topic {name} is not defined in the settings')
+
+
+def get_db_config() -> DBSettings:
+    try:
+        return db_settings
+    except KeyError:
+        raise KeyError(f"Database configuration is not defined in the settings")
