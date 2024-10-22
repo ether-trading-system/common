@@ -7,6 +7,7 @@ from http import HTTPStatus
 # https://fastapi.tiangolo.com/tutorial/handling-errors/#handling-errors
 # https://docs.python.org/3/library/http.html#http.HTTPStatus
 
+# 서버 예외 발생 시
 class EtherException(Exception):
     error_code: Enum
     status_code: HTTPStatus
@@ -25,6 +26,8 @@ class EtherException(Exception):
         self.error = error
 
 
+
+# 외부 API에 요청을 보냈을 때 발생하는 에러(REST API)
 class EtherRestClientException(Exception):
     status_code: int
     request_url: str
